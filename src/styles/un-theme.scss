@@ -1,0 +1,97 @@
+:root {
+  --un-root-font-size: 10px;
+  --un-root-font-size-s: 8px;
+  --un-root-font-size-xs: 6px;
+
+  --un-overlay-bg: rgba(0, 0, 0, 0.7);
+  --un-body-font-size: 1.8rem;
+  --un-body-font-family: system-ui;
+  --un-title-font-family: system-ui;
+  --un-title-font-weight: 600;
+  --un-body-text-color: var(--p-gray-900);
+}
+
+html,
+body {
+  font-size: var(--un-root-font-size);
+  font-family: var(--un-body-font-family), sans-serif;
+  font-weight: 400;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  --p-toast-summary-font-size: var(--un-body-font-size);
+}
+
+@media (max-width: 991.98px) {
+  html,
+  body {
+    font-size: var(--un-root-font-size-s);
+  }
+}
+
+@media (max-width: 767.98px) {
+  html,
+  body {
+    font-size: var(--un-root-font-size-xs);
+  }
+}
+
+router-outlet {
+  display: none;
+}
+
+.un-body {
+  font-size: var(--un-body-font-size);
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  color: var(--un-body-text-color);
+  font-family: var(--un-title-font-family), sans-serif;
+  font-weight: var(--un-title-font-weight);
+  line-height: normal;
+  margin: 0;
+}
+
+h1,
+.h1 {
+  font-size: 3.2rem;
+}
+
+h2,
+.h2 {
+  font-size: 2.7rem;
+}
+
+.p-button {
+  &.size-normal {
+    font-size: 1.5rem;
+  }
+
+  --p-button-lg-font-size: 2rem;
+}
+
+.p-inputtext {
+  --p-inputtext-lg-font-size: 2rem;
+}
+
+.p-dialog-title {
+  --p-dialog-title-font-size: 3.2rem;
+}
+
+.p-datatable {
+  color: var(--un-body-text-color);
+}
+
+

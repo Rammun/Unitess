@@ -1,0 +1,13 @@
+<un-base-event-form [(eventModel)]="eventModel">
+  <div class="d-flex-column g-1">
+    <label for="number-of-participants">Number Of Participants</label>
+    <input
+      pInputText
+      id="number-of-participants"
+      type="text"
+      pSize="large"
+      [value]="numberOfParticipants()"
+      (input)="numberOfParticipants.set($any($event.target).value)"
+    />
+  </div>
+</un-base-event-form>

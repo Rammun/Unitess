@@ -1,0 +1,64 @@
+<div class="events-page">
+  <div class="events-header">
+    <p-button
+      (click)="onCreateNewEvent()"
+      label="Create New Event"
+      icon="pi pi-plus"
+      size="large"
+    />
+  </div>
+
+  <p-table
+    [value]="events()"
+    stripedRows
+    [rowTrackBy]="trackBy"
+  >
+    <ng-template #header>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Created Date</th>
+        <th></th>
+      </tr>
+    </ng-template>
+
+    <ng-template #body let-event>
+      <tr>
+        <td>{{ event.name }}</td>
+        <td>{{ event.type }}</td>
+        <td>{{ event.description }}</td>
+        <td>{{ event.date }}</td>
+        <td>
+          <div class="d-flex g-1">
+            <p-button
+              (click)="onViewEvent(event)"
+              icon="pi pi-eye"
+              severity="success"
+            ></p-button>
+
+            <p-button
+              (click)="onEditEvent(event)"
+              icon="pi pi-pencil"
+              severity="help"
+            ></p-button>
+
+            <p-button
+              (click)="onDeleteEvent(event)"
+              icon="pi pi-trash"
+              severity="danger"
+            ></p-button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="5" class="text-center">No Events</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<un-create-event-modal #createEventModal></un-create-event-modal>
