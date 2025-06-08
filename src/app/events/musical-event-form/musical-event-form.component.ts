@@ -25,7 +25,6 @@ export class MusicalEventFormComponent {
 
   constructor() {
     effect(() => {
-
       this.eventModel.update(current => ({
         ...current,
         kindOfMusic: this.kindOfMusic() ?? ''

@@ -12,11 +12,11 @@ export class EventService {
     if (!eventId) {
       return throwError(() => new Error('eventId is required'));
     }
-    const event = this.events().find(event => event.id === eventId);
+    const event = this.events().find(event => event.id === eventId) ?? null;
     if (!event) {
       console.log('event is not found');
     }
-    return of(event ?? null);
+    return of(event);
   }
 
   createEvent(event: BaseEvent) {
@@ -43,7 +43,7 @@ export class EventService {
     }
 
     this.events.update(events =>
-      events.map(e => e.id === event.id ? event : e)
+      events.map(item => item.id === event.id ? event : item)
     );
 
     return of(event);

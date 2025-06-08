@@ -13,8 +13,7 @@
       <p-select
         inputId="event-type"
         [options]="eventTypes()"
-        [ngModel]="selectedEventType()"
-        (onChange)="onSelectEventType($event.value)"
+        [(ngModel)]="selectedEventType"
         optionLabel="label"
         optionValue="value"
         placeholder="Select Event Type"
@@ -37,7 +36,7 @@
       <p-button
         severity="secondary"
         label="Cancel"
-        (click)="close()"
+        (click)="onClose()"
         styleClass="size-normal"
       ></p-button>
 

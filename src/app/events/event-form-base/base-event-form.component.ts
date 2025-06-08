@@ -23,15 +23,11 @@ export class BaseEventFormComponent {
 
   constructor() {
     effect(() => {
-      const name = this.name();
-      const description = this.description();
-      const location = this.location();
-
       this.eventModel.update(current => ({
         ...current,
-        name: name,
-        description: description,
-        location: location
+        name: this.name(),
+        description: this.description(),
+        location: this.location()
       }));
     });
   }

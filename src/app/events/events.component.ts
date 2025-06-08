@@ -1,7 +1,7 @@
 import {Component, DestroyRef, inject, viewChild, ViewChild} from '@angular/core';
 import {TableModule} from 'primeng/table';
 import {Button} from 'primeng/button';
-import {EditEventModalComponent} from './edit-event=modal/edit-event-modal.component';
+import {EditEventModalComponent} from './edit-event-modal/edit-event-modal.component';
 import {BaseEvent} from './event-form-base/base-event-form.model';
 import {EventService} from './events.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
@@ -52,16 +52,16 @@ export class EventsComponent {
     return event.id;
   }
 
-  onCreateNewEvent() {
+  onShowNewEventModal() {
     this.editEventModal().show();
+  }
+
+  onShowEditEventModal(event: BaseEvent) {
+    this.editEventModal().show(event);
   }
 
   onViewEvent(event: BaseEvent) {
     this._router.navigate([`/events`, event.id]);
-  }
-
-  onEditEvent(event: BaseEvent) {
-    this.editEventModal().show(event);
   }
 
   onDeleteEvent($event: Event, event: BaseEvent) {
@@ -70,7 +70,7 @@ export class EventsComponent {
 
   onSaved() {
     this._messageService.add({
-      severity: 'Success',
+      severity: 'success',
       summary: 'Success',
       detail: 'event saved'
     });
@@ -79,7 +79,7 @@ export class EventsComponent {
   private confirmDeletion($event: Event, eventId: number | null) {
     this.confirmationService.confirm({
       target: $event.target as EventTarget,
-      message: `Are you sure that you want to delete event with id=${eventId}`,
+      message: `Are you sure that you want to delete event with id=${eventId}?`,
       header: 'Confirmation',
       closable: true,
       closeOnEscape: true,
@@ -121,7 +121,7 @@ export class EventsComponent {
       )
       .subscribe(() => {
         this._messageService.add({
-          severity: 'Success',
+          severity: 'success',
           summary: 'Success',
           detail: `event id=${eventId} has been deleted`
         });

@@ -16,6 +16,11 @@ enum EventModalMode {
   Edit = 1
 }
 
+type EventTypeOption = {
+  label: string,
+  value: EventType
+};
+
 @Component({
   selector: 'un-edit-event-modal',
   templateUrl: './edit-event-modal.component.html',
@@ -38,7 +43,7 @@ export class EditEventModalComponent {
 
   eventForm = signal<BaseEvent>(new BaseEvent());
   visible = signal<boolean>(false);
-  eventTypes = signal([
+  eventTypes = signal<EventTypeOption[]>([
     {
       label: EventType.Musical,
       value: EventType.Musical
@@ -70,20 +75,15 @@ export class EditEventModalComponent {
   }
 
   show(eventModel?: BaseEvent) {
-    console.log('----1', eventModel);
-    this.eventForm.set(eventModel ?? new BaseEvent());
-    this.selectedEventType.set(eventModel?.eventType ?? EventType.Unknown);
-    console.log('----11', this.eventForm());
+    const model = eventModel ?? new BaseEvent();
+    this.eventForm.set(model);
+    this.selectedEventType.set(model.eventType ?? EventType.Unknown);
+    this.isBusy.set(false);
     this.visible.set(true);
   }
 
-  close() {
+  onClose() {
     this.visible.set(false);
-  }
-
-  onSelectEventType(eventType: EventType) {
-    console.log(eventType);
-    this.selectedEventType.set(eventType);
   }
 
   onCreateEvent() {
@@ -99,12 +99,11 @@ export class EditEventModalComponent {
       )
       .subscribe(() => {
         this.saved.emit();
-        this.close();
+        this.onClose();
       });
   }
 
   onEditEvent() {
-    console.log('----2', this.eventForm());
     this.isBusy.set(true);
     this._eventService.updateEvent(this.eventForm())
       .pipe(
@@ -117,7 +116,7 @@ export class EditEventModalComponent {
       )
       .subscribe(() => {
         this.saved.emit();
-        this.close();
+        this.onClose();
       });
   }
 
