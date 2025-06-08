@@ -1,0 +1,11 @@
+<div class="event-page">
+  <h2>Event</h2>
+
+  @if (isNotFound()) {
+    <div>Event not found</div>
+  } @else {
+    @for (entry of eventView() | keyvalue; track entry.key) {
+      <div>{{ entry.key }}: {{ entry.value }}</div>
+    }
+  }
+</div>

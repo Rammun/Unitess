@@ -1,5 +1,6 @@
 <div class="events-page">
   <div class="events-header">
+    <h2>Events</h2>
     <p-button
       (click)="onCreateNewEvent()"
       label="Create New Event"
@@ -16,7 +17,7 @@
     <ng-template #header>
       <tr>
         <th>Name</th>
-        <th>Type</th>
+        <th>Event Type</th>
         <th>Description</th>
         <th>Created Date</th>
         <th></th>
@@ -26,11 +27,11 @@
     <ng-template #body let-event>
       <tr>
         <td>{{ event.name }}</td>
-        <td>{{ event.type }}</td>
+        <td>{{ event.eventType }}</td>
         <td>{{ event.description }}</td>
-        <td>{{ event.date }}</td>
+        <td>{{ event.createdDate| date: 'dd.MM.yyyy hh:mm' }}</td>
         <td>
-          <div class="d-flex g-1">
+          <div class="d-flex g-1 justify-content-end">
             <p-button
               (click)="onViewEvent(event)"
               icon="pi pi-eye"
@@ -44,7 +45,7 @@
             ></p-button>
 
             <p-button
-              (click)="onDeleteEvent(event)"
+              (click)="onDeleteEvent($event, event)"
               icon="pi pi-trash"
               severity="danger"
             ></p-button>
@@ -61,4 +62,7 @@
   </p-table>
 </div>
 
-<un-create-event-modal #createEventModal></un-create-event-modal>
+<un-edit-event-modal (saved)="onSaved()"></un-edit-event-modal>
+
+<p-toast position="bottom-right"/>
+<p-confirmdialog/>

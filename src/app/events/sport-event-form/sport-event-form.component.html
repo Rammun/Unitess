@@ -1,13 +1,13 @@
 <un-base-event-form [(eventModel)]="eventModel">
   <div class="d-flex-column g-1">
-    <label for="number-of-participants">Number Of Participants</label>
-    <input
-      pInputText
-      id="number-of-participants"
-      type="text"
-      pSize="large"
-      [value]="numberOfParticipants()"
-      (input)="numberOfParticipants.set($any($event.target).value)"
+    <label for="number-of-participants">Number of participants</label>
+    <p-inputnumber
+      inputId="kind-of-music"
+      mode="decimal"
+      size="large"
+      [(ngModel)]="numberOfParticipants"
+      [min]="0"
+      [showButtons]="true"
     />
   </div>
 </un-base-event-form>

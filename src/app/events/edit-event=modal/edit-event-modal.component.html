@@ -1,12 +1,15 @@
 <p-dialog
-  [visible]="visible()"
+  [(visible)]="visible"
   [modal]="true"
   [style]="{ width: '60rem' }"
-  header="Create Event"
+  [draggable]="false"
+  [closeOnEscape]="true"
+  [closable]="true"
+  [header]="eventModalMode() === EventModalMode.CreateNew ? 'Create New Event' : 'Edit Event'"
 >
   <div class="d-flex-column g-2">
     <div class="d-flex-column g-1">
-      <label for="event-type">Event Type</label>
+      <label for="event-type">Event type</label>
       <p-select
         inputId="event-type"
         [options]="eventTypes()"
@@ -38,12 +41,21 @@
         styleClass="size-normal"
       ></p-button>
 
-      <p-button
-        label="Create"
-        (click)="onCreateEvent()"
-        styleClass="size-normal"
-        [disabled]="isDisabled()"
-      ></p-button>
+      @if (eventModalMode() === EventModalMode.CreateNew) {
+        <p-button
+          label="Create"
+          (click)="onCreateEvent()"
+          styleClass="size-normal"
+          [disabled]="isDisabled()"
+        ></p-button>
+      } @else {
+        <p-button
+          label="Edit"
+          (click)="onEditEvent()"
+          styleClass="size-normal"
+          [disabled]="isDisabled()"
+        ></p-button>
+      }
     </div>
   </div>
 </p-dialog>

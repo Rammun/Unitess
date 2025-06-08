@@ -1,13 +1,12 @@
 <un-base-event-form [(eventModel)]="eventModel">
   <div class="d-flex-column g-1">
-    <label for="kind-of-music">Kind of Music</label>
+    <label for="kind-of-music">Kind of music</label>
     <input
       pInputText
       id="kind-of-music"
       type="text"
       pSize="large"
-      [value]="kindOfMusic()"
-      (input)="kindOfMusic.set($any($event.target).value)"
+      [(ngModel)]="kindOfMusic"
     />
   </div>
 </un-base-event-form>

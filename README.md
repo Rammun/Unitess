@@ -1,59 +1,44 @@
-# Unitess
+## Test Task
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.0.
+Время выполнения: Задание рассчитано до 4 часов работы для разработчика уровня мидл.
 
-## Development server
+Вам предстоит разработать небольшое приложение для управления списком мероприятий. В рамках задания необходимо продемонстрировать знание работы с компонентами Angular, использование Angular Signals и подходов к архитектуре компонентов — через наследование или структурную композицию.
 
-To start a local development server, run:
+Наследование можно заменить на структурную композицию (например, общий form component + ng-container).
 
-```bash
-ng serve
-```
+Бэкенд реализовывать не требуется — данные можно хранить в памяти.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Все компоненты должны быть standalone.
 
-## Code scaffolding
+Для стилизации и удобства работы с интерфейсом допускается использование PrimeNG.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+### Описание:
+Разработать небольшое приложение для управления списком мероприятий. Пользователь должен иметь возможность:
+1. Просматривать список мероприятий.
+2. Добавлять новые мероприятия.
+3. Редактировать существующие мероприятия.
+4. Удалять мероприятия.
 
-```bash
-ng generate component component-name
-```
+### Детали задания:
+1. Список мероприятий:
+Каждое мероприятие содержит: название, описание, место проведения и тип мероприятия.
+Список мероприятий должен отображаться в виде таблицы.
+2. Добавление/редактирование мероприятий:
+Форма для добавления и редактирования мероприятия.
+Использовать наследование компонентов:
+Базовый компонент формы должен содержать общие поля: название, описание, место проведения.
+Создать два компонента-наследника:
+Для спортивных мероприятий добавить поле "Количество участников".
+Для музыкальных мероприятий добавить поле "Жанр музыки".
+3. Удаление мероприятия:
+Пользователь должен иметь возможность удалять мероприятия из списка.
+4. Наследование компонентов:
+Создать базовый компонент BaseEventFormComponent, реализующий общую логику для формы.
+Создать два компонента-наследника: SportEventFormComponent и MusicEventFormComponent, которые добавляют специфические поля.
+5. Сигналы:
+Использовать сигналы Angular для управления состоянием приложения (например, для хранения и обновления списка мероприятий).
+6. Standalone компоненты:
+Все компоненты должны быть standalone.
+### Результат:
+Решение необходимо предоставить через репозиторий на GitHub, GitLab или другой удобной платформе для контроля версий.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

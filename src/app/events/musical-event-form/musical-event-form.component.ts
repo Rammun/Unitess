@@ -1,6 +1,7 @@
 import {Component, effect, model, signal} from '@angular/core';
 import {BaseEventFormComponent} from '../event-form-base/base-event-form.component';
 import {InputText} from 'primeng/inputtext';
+import {InputNumberModule } from 'primeng/inputnumber';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BaseEvent} from '../event-form-base/base-event-form.model';
 
@@ -10,7 +11,8 @@ import {BaseEvent} from '../event-form-base/base-event-form.model';
     BaseEventFormComponent,
     InputText,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    InputNumberModule
   ],
   templateUrl: './musical-event-form.component.html',
   styleUrl: './musical-event-form.component.scss',
