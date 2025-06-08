@@ -1,4 +1,4 @@
-import {Component, computed, DestroyRef, effect, inject, output, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, computed, DestroyRef, effect, inject, output, signal} from '@angular/core';
 import {Dialog} from 'primeng/dialog';
 import {FormsModule} from '@angular/forms';
 import {Button} from 'primeng/button';
@@ -6,10 +6,10 @@ import {BaseEvent, EventType} from '../event-form-base/base-event-form.model';
 import {Select} from 'primeng/select';
 import {MusicalEventFormComponent} from '../musical-event-form/musical-event-form.component';
 import {SportEventFormComponent} from '../sport-event-form/sport-event-form.component';
-import {BaseEventFormComponent} from '../event-form-base/base-event-form.component';
 import {EventService} from '../events.service';
 import {catchError, EMPTY, finalize} from 'rxjs';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {BaseEventFormComponent} from '../event-form-base/base-event-form.component';
 
 enum EventModalMode {
   CreateNew = 0,
@@ -34,12 +34,10 @@ type EventTypeOption = {
     SportEventFormComponent,
     BaseEventFormComponent
   ],
-  standalone: true
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditEventModalComponent {
-
-  EventType = EventType;
-  EventModalMode = EventModalMode;
 
   eventForm = signal<BaseEvent>(new BaseEvent());
   visible = signal<boolean>(false);
@@ -55,11 +53,14 @@ export class EditEventModalComponent {
   ]);
   selectedEventType = signal<EventType | null>(null);
   isDisabled = computed(() => {
-    return this.selectedEventType() === null;
+    return this.selectedEventType() == null;
   });
   eventModalMode = computed(() => !!this.eventForm().id ? EventModalMode.Edit : EventModalMode.CreateNew);
   isBusy = signal(false);
   saved = output();
+
+  protected readonly EventType = EventType;
+  protected readonly EventModalMode = EventModalMode;
 
   private readonly destroyRef = inject(DestroyRef);
 

@@ -1,4 +1,4 @@
-import {Component, DestroyRef, inject, viewChild, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, DestroyRef, inject, viewChild, ViewChild} from '@angular/core';
 import {TableModule} from 'primeng/table';
 import {Button} from 'primeng/button';
 import {EditEventModalComponent} from './edit-event-modal/edit-event-modal.component';
@@ -28,7 +28,8 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
   providers: [
     MessageService,
     ConfirmationService
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EventsComponent {
 
@@ -43,7 +44,7 @@ export class EventsComponent {
   constructor(
     private readonly _eventsService: EventService,
     private readonly _messageService: MessageService,
-    private readonly confirmationService: ConfirmationService,
+    private readonly _confirmationService: ConfirmationService,
     private readonly _router: Router
   ) {
   }
@@ -77,7 +78,7 @@ export class EventsComponent {
   }
 
   private confirmDeletion($event: Event, eventId: number | null) {
-    this.confirmationService.confirm({
+    this._confirmationService.confirm({
       target: $event.target as EventTarget,
       message: `Are you sure that you want to delete event with id=${eventId}?`,
       header: 'Confirmation',
