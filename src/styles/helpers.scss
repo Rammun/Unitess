@@ -1,0 +1,36 @@
+.d-flex {
+  display: flex !important;
+}
+
+.d-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.justify-content-end {
+  justify-content: flex-end !important;
+}
+
+.g-1 {
+  gap: 1rem !important;
+}
+
+.g-2 {
+  gap: 2rem !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.mt-1 {
+  margin-top: 1rem !important;
+}
+
+.mt-2 {
+  margin-top: 2rem !important;
+}
+
+.p-2 {
+  padding: 2rem !important;
+}

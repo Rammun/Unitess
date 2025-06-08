@@ -1,0 +1,13 @@
+<un-base-event-form [(eventModel)]="eventModel">
+  <div class="d-flex-column g-1">
+    <label for="number-of-participants">Number of participants</label>
+    <p-inputnumber
+      inputId="kind-of-music"
+      mode="decimal"
+      size="large"
+      [(ngModel)]="numberOfParticipants"
+      [min]="EventFormConstants.MIN_NUMBER"
+      [showButtons]="true"
+    />
+  </div>
+</un-base-event-form>

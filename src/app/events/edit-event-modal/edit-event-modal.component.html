@@ -1,0 +1,60 @@
+<p-dialog
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '60rem' }"
+  [draggable]="false"
+  [closeOnEscape]="true"
+  [closable]="true"
+  [header]="eventModalMode() === EventModalMode.CreateNew ? 'Create New Event' : 'Edit Event'"
+>
+  <div class="d-flex-column g-2">
+    <div class="d-flex-column g-1">
+      <label for="event-type">Event type</label>
+      <p-select
+        inputId="event-type"
+        [options]="eventTypes()"
+        [(ngModel)]="selectedEventType"
+        optionLabel="label"
+        optionValue="value"
+        placeholder="Select Event Type"
+      ></p-select>
+    </div>
+
+    @switch (selectedEventType()) {
+      @case (EventType.Musical) {
+        <un-musical-event-form [(eventModel)]="eventForm"></un-musical-event-form>
+      }
+      @case (EventType.Sport) {
+        <un-sport-event-form [(eventModel)]="eventForm"></un-sport-event-form>
+      }
+      @default {
+        <un-base-event-form [(eventModel)]="eventForm"></un-base-event-form>
+      }
+    }
+
+    <div class="d-flex g-2 justify-content-end mt-2">
+      <p-button
+        severity="secondary"
+        label="Cancel"
+        (click)="onClose()"
+        styleClass="size-normal"
+      ></p-button>
+
+      @if (eventModalMode() === EventModalMode.CreateNew) {
+        <p-button
+          label="Create"
+          (click)="onCreateEvent()"
+          styleClass="size-normal"
+          [disabled]="isDisabled()"
+        ></p-button>
+      } @else {
+        <p-button
+          label="Edit"
+          (click)="onEditEvent()"
+          styleClass="size-normal"
+          [disabled]="isDisabled()"
+        ></p-button>
+      }
+    </div>
+  </div>
+</p-dialog>

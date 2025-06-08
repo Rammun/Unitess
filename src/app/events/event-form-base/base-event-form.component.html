@@ -1,0 +1,41 @@
+<div>
+  <div class="d-flex-column g-2">
+    <div class="d-flex-column g-1">
+      <label for="event-name">Event name</label>
+      <input
+        pInputText
+        id="event-name"
+        type="text"
+        pSize="large"
+        [maxlength]="EventFormConstants.MAX_LENGTH"
+        [(ngModel)]="name"
+      />
+    </div>
+
+    <div class="d-flex-column g-1">
+      <label for="description">Description</label>
+      <input
+        pInputText
+        id="description"
+        type="text"
+        pSize="large"
+        [maxlength]="EventFormConstants.MAX_LENGTH"
+        [(ngModel)]="description"
+      />
+    </div>
+
+    <div class="d-flex-column g-1">
+      <label for="location">Location</label>
+      <input
+        pInputText
+        id="location"
+        type="text"
+        pSize="large"
+        [maxlength]="EventFormConstants.MAX_LENGTH"
+        [(ngModel)]="location"
+      />
+    </div>
+
+    <ng-content></ng-content>
+  </div>
+</div>
